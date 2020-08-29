@@ -1,0 +1,6 @@
+﻿https://2.python-requests.org//zh_CN/latest/user/quickstart.html
+http://viml.nchc.org.tw/blog/paper_info.php?CLASS_ID=1&SUB_ID=1&PAPER_ID=687
+http://www.geraintianpalmer.org.uk/2017/09/22/plotting-geopandas/
+stackoverflow:https://stackoverflow.com/questions/18195758/set-matplotlib-colorbar-size-to-match-graph
+中選會選舉資料庫:http://db.cec.gov.tw/histQuery.jsp?voteCode=20181101A1B1&qryType=ctks
+政府資料公開平台:https://data.gov.tw/dataset/7441
