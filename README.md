@@ -22,6 +22,7 @@ Python
 * Yahoo電影院線片資訊爬蟲
 * YouTube發燒影片爬蟲
 ### 其他:
+* 可用免費ip清單爬蟲
 * 104人力銀行關鍵字職缺資訊爬蟲
 * Womentalk板文章資訊爬蟲
 * Beauty板文章圖片爬蟲
