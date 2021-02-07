@@ -138,26 +138,27 @@ def candidate_map(country,name):
     return title
 
 
-#爬取六都市長候選人連結網址
-links,party_df=candidate_list()
-#爬取六都市長候選人得票數據資料
-value_dfs,top5_dfs=value_df(links)
-#數據資料和地圖資料合併結果
-merge_df,top5_merge_df=map_df()
+if __name__ == '__main__':
+    #爬取六都市長候選人連結網址
+    links,party_df=candidate_list()
+    #爬取六都市長候選人得票數據資料
+    value_dfs,top5_dfs=value_df(links)
+    #數據資料和地圖資料合併結果
+    merge_df,top5_merge_df=map_df()
 
 
-#繪製指定直轄市、候選人得票率地圖
-title=candidate_map('高雄市','韓國瑜')
-plt.savefig('{}.png'.format(title))
-plt.show()
+    #繪製指定直轄市、候選人得票率地圖
+    title=candidate_map('高雄市','韓國瑜')
+    plt.savefig('{}.png'.format(title))
+    plt.show()
 
-title=candidate_map('台北市','柯文哲')
-plt.savefig('{}.png'.format(title))
-plt.show()
+    title=candidate_map('台北市','柯文哲')
+    plt.savefig('{}.png'.format(title))
+    plt.show()
 
-title=candidate_map('桃園市','鄭文燦')
-plt.savefig('{}.png'.format(title))
-plt.show()
+    title=candidate_map('桃園市','鄭文燦')
+    plt.savefig('{}.png'.format(title))
+    plt.show()
 
 
 

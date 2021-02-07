@@ -101,14 +101,15 @@ def consumption_map(year):
     return title
 
 
-#數據資料和地圖資料合併結果
-value_dfs,top5_dfs,merge_df,top5_merge_df=merge_df()
+if __name__ == '__main__':
+    #數據資料和地圖資料合併結果
+    value_dfs,top5_dfs,merge_df,top5_merge_df=merge_df()
 
 
-#繪製指定年份平均每戶消費支出地圖
-title=consumption_map('2015')
-plt.savefig('{}.png'.format(title))
-plt.show()
+    #繪製指定年份平均每戶消費支出地圖
+    title=consumption_map('2015')
+    plt.savefig('{}.png'.format(title))
+    plt.show()
 
 
 
