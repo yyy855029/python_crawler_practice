@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -35,18 +37,18 @@ def fund_information_crawler():
     first_url='https://futures-announce.fundclear.com.tw/FMA/app/MSG010'
     response=session.get(first_url,headers=headers)
     #先從初始連結取得interface參數值
-    inter_num=re.findall('=:(\d+):',response.text)[0]
+    inter_num=re.findall(r'=:(\d+):',response.text)[0]
 
-    second_url='https://futures-announce.fundclear.com.tw/FMA/app/?wicket:interface=:{}:queryForm:query:-1:IUnversionedBehaviorListener&wicket:behaviorId=0&wicket:ignoreIfNotActive=true&random=0.9810217416469504'.format(inter_num)
+    second_url='https://futures-announce.fundclear.com.tw/FMA/app/?wicket:interface=:{}:queryForm:query:-1:IUnversionedBehaviorListener&wicket:behaviorId=0&wicket:ignoreIfNotActive=true'.format(inter_num)
     response=session.post(second_url,headers=headers,data=data)
     
     try:
         #餵入日期後取得總頁數
-        page_num=int(re.findall('共\s*(\d+)\s*頁',response.text)[0])
+        page_num=int(re.findall(r'共\s*(\d+)\s*頁',response.text)[0])
 
         for num in range(page_num):
             #進入每頁連結取得資料
-            url='https://futures-announce.fundclear.com.tw/FMA/app/?wicket:interface=:{}:grid:managerForm:checkGroup:dataGrid:bottomToolbars:4:toolbar:span:navigator:navigation:{}:pageLink::IBehaviorListener&wicket:behaviorId=0&random=0.3985720015523364'.format(inter_num,num)
+            url='https://futures-announce.fundclear.com.tw/FMA/app/?wicket:interface=:{}:grid:managerForm:checkGroup:dataGrid:bottomToolbars:4:toolbar:span:navigator:navigation:{}:pageLink::IBehaviorListener&wicket:behaviorId=0'.format(inter_num,num)
             response=session.get(url,headers=headers)
             soup=BeautifulSoup(response.text,'lxml')
             page_data=soup.select('td')[:-1]
@@ -55,7 +57,9 @@ def fund_information_crawler():
                 companys.append(page_data[i].text.replace('\n',''))
                 funds.append(page_data[i+1].text.replace('\n',''))
                 dates.append(page_data[i+2].text.replace('\n',''))
-                informations.append(page_data[i+3].text.replace('\n',''))
+                info=page_data[i+3].text.replace('\n','')
+                link='https://futures-announce.fundclear.com.tw'+page_data[i+3].select('a')[0]['href']
+                informations.append('<a href="{}">{}</a>'.format(link,info))
     
     except:
         #查無結果例外
@@ -91,7 +95,9 @@ def send_mail(df):
     
     </body>
     
-    """.format(df.to_html(index=False)) 
+    """.format(df.to_html(index=False,
+                          render_links=True,
+                          escape=False))    
 
     #寄送信件
     outlook=win32.Dispatch('outlook.application') 
