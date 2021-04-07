@@ -59,6 +59,7 @@ def fund_information_crawler():
                 dates.append(page_data[i+2].text.replace('\n',''))
                 info=page_data[i+3].text.replace('\n','')
                 link='https://futures-announce.fundclear.com.tw'+page_data[i+3].select('a')[0]['href']
+                #HTML超連結設定
                 informations.append('<a href="{}">{}</a>'.format(link,info))
     
     except:
@@ -81,6 +82,7 @@ def send_mail(df):
     addressee=';'.join(addressee_list)
     date=datetime.now()
     date_str=datetime.strftime(date,'%Y%m%d')
+    #HTML表格超連結設定
     content=\
     """
     <body>
