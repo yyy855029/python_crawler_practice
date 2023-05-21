@@ -178,10 +178,13 @@ def page_function(page):
     return df,df_s  
 
 
-#抓取Stock板標的文章資訊
-df,df_s=page_function(20)
-#將Stock板標的文章資訊匯出成Excel檔
-df_s.to_excel('Stock板標的文.xlsx',index=False)
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取Stock板標的文章資訊
+    df,df_s=page_function(20)
+    #將Stock板標的文章資訊匯出成Excel檔
+    df_s.to_excel('Stock板標的文.xlsx',index=False)
 
 
 

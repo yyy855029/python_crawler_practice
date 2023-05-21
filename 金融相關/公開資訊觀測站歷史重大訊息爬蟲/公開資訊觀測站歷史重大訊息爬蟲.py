@@ -70,23 +70,26 @@ def news_info_crawler(total_df):
     return total_info_df
 
 
-#爬取特定股票指定時間範圍歷史重大訊息
-co_id=2330
-dfs=[]
-for year in tqdm(range(107,109)):
-    for month in range(1,13):
-        df=news_summary_crawler(year,month,co_id)
-        dfs.append(df)
-total_df=pd.concat(dfs,ignore_index=True,sort=False)
 
-#特定股票指定時間範圍歷史重大訊息簡介匯出成Excel檔
-total_df.to_excel('{}歷史重大訊息簡介.xlsx'.format(co_id),index=False)
+#呼叫函數
+if __name__ == '__main__':
+    #爬取特定股票指定時間範圍歷史重大訊息
+    co_id=2330
+    dfs=[]
+    for year in tqdm(range(107,109)):
+        for month in range(1,13):
+            df=news_summary_crawler(year,month,co_id)
+            dfs.append(df)
+    total_df=pd.concat(dfs,ignore_index=True,sort=False)
 
-#爬取特定歷史重大消息
-total_info_df=news_info_crawler(total_df)
+    #特定股票指定時間範圍歷史重大訊息簡介匯出成Excel檔
+    total_df.to_excel('{}歷史重大訊息簡介.xlsx'.format(co_id),index=False)
 
-#特定股票指定時間範圍歷史重大訊息內容匯出成Excel檔
-total_info_df.to_excel('{}歷史重大訊息內容.xlsx'.format(co_id),index=False)
+    #爬取特定歷史重大消息
+    total_info_df=news_info_crawler(total_df)
+
+    #特定股票指定時間範圍歷史重大訊息內容匯出成Excel檔
+    total_info_df.to_excel('{}歷史重大訊息內容.xlsx'.format(co_id),index=False)
 
 
 

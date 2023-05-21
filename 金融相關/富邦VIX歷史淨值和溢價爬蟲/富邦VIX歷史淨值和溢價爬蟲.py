@@ -71,16 +71,19 @@ def plot_fubon_vix_nav():
     plt.show()
 
 
-#抓取近一年富邦VIX淨值資料
-enddate=datetime.now().date()
-startdate=(enddate-timedelta(days=365))
-df=fubon_vix_nav_crawlwr(startdate,enddate)
-#將近一年富邦VIX淨值資料匯出成Excel檔
-df.to_excel('近一年富邦VIX淨值資料.xlsx')
 
+#呼叫函數
+if __name__ == '__main__':
+    #抓取近一年富邦VIX淨值資料
+    enddate=datetime.now().date()
+    startdate=(enddate-timedelta(days=365))
+    df=fubon_vix_nav_crawlwr(startdate,enddate)
+    
+    #將近一年富邦VIX淨值資料匯出成Excel檔
+    df.to_excel('近一年富邦VIX淨值資料.xlsx')
 
-#繪製富邦VIX歷史淨值和溢價圖
-plot_fubon_vix_nav()
+    #繪製富邦VIX歷史淨值和溢價圖
+    plot_fubon_vix_nav()
 
 
 

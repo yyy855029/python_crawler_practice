@@ -53,18 +53,21 @@ def plot_institutional_investors_net_buy(title):
     plt.show()
 
 
-#抓取三大法人買賣超金額變化資料
-df=three_party_buy_sell_crawler()
-#將近40個交易日三大法人買賣超金額變化資料匯出成Excel檔
-df.to_excel('近40個交易日三大法人買賣超金額變化資料.xlsx')
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取三大法人買賣超金額變化資料
+    df=three_party_buy_sell_crawler()
+    #將近40個交易日三大法人買賣超金額變化資料匯出成Excel檔
+    df.to_excel('近40個交易日三大法人買賣超金額變化資料.xlsx')
 
 
-#繪製近40個交易日外資買賣超金額變化圖
-plot_institutional_investors_net_buy('外資')
-#繪製近40個交易日投信買賣超金額變化圖
-plot_institutional_investors_net_buy('投信')
-#繪製近40個交易日自營商買賣超金額變化圖
-plot_institutional_investors_net_buy('自營商')
+    #繪製近40個交易日外資買賣超金額變化圖
+    plot_institutional_investors_net_buy('外資')
+    #繪製近40個交易日投信買賣超金額變化圖
+    plot_institutional_investors_net_buy('投信')
+    #繪製近40個交易日自營商買賣超金額變化圖
+    plot_institutional_investors_net_buy('自營商')
 
 
 

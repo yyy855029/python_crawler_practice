@@ -115,10 +115,13 @@ def date_range_total_crawler(total_time):
     return total_merge_df
 
 
-#遞迴爬取指定時間範圍下全部鉅亨網台股新聞資訊
-total_merge_df=date_range_total_crawler(3)
-#將鉅亨網台股新聞資訊匯出成Excel檔
-total_merge_df.to_excel('鉅亨網台股新聞資訊.xlsx',index=False)
+
+#呼叫函數
+if __name__ == '__main__':
+    #遞迴爬取指定時間範圍下全部鉅亨網台股新聞資訊
+    total_merge_df=date_range_total_crawler(3)
+    #將鉅亨網台股新聞資訊匯出成Excel檔
+    total_merge_df.to_excel('鉅亨網台股新聞資訊.xlsx',index=False)
 
 
 

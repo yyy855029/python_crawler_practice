@@ -73,16 +73,19 @@ def plot_security_lend_borrow(df,plot_type='融劵'):
         plt.show()
 
 
-#抓取融資融劵餘額變化和增減資料
-df=security_lend_borrow_crawler()
-#將近30個交易日融資融劵餘額變化和增減資料匯出成Excel檔
-df.to_excel('近30個交易日融資融劵餘額變化和增減資料.xlsx')
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取融資融劵餘額變化和增減資料
+    df=security_lend_borrow_crawler()
+    #將近30個交易日融資融劵餘額變化和增減資料匯出成Excel檔
+    df.to_excel('近30個交易日融資融劵餘額變化和增減資料.xlsx')
 
 
-#繪製近30個交易日融資餘額變化和增減圖 (單位:億)
-plot_security_lend_borrow(df,'融資')
-#繪製近30個交易日融劵餘額變化和增減圖 (單位:張)
-plot_security_lend_borrow(df,'融劵')
+    #繪製近30個交易日融資餘額變化和增減圖 (單位:億)
+    plot_security_lend_borrow(df,'融資')
+    #繪製近30個交易日融劵餘額變化和增減圖 (單位:張)
+    plot_security_lend_borrow(df,'融劵')
 
 
 

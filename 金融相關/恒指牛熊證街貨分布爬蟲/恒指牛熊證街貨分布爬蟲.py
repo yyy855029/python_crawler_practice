@@ -60,30 +60,32 @@ def bear_bull_crawler(date,code):
     return bull_bear_perct,total_bear_df,total_bull_df,total_bear_bull_df
 
 
-#指定恒指區域抓取當天牛熊證街貨分佈資料
-date=datetime.now().strftime('%Y-%m-%d')
 
-diff_dict={'50':'0',
-          '100':'1',
-          '200':'2',
-          '300':'3',
-          '400':'4',
-          '500':'5'}
+#呼叫函數
+if __name__ == '__main__':
+    #指定恒指區域抓取當天牛熊證街貨分佈資料
+    date=datetime.now().strftime('%Y-%m-%d')
 
-condition=True
-while condition:
-    try:
-        diff=str(input('輸入恒指區域 (50, 100, 200, 300, 400, 500) : '))
-        code=diff_dict[diff]
-        condition=False
-    except:
-        print('請輸入正常範圍 !!')
+    diff_dict={'50':'0',
+              '100':'1',
+              '200':'2',
+              '300':'3',
+              '400':'4',
+              '500':'5'}
 
-bull_bear_perct,total_bear_df,total_bull_df,total_bear_bull_df=bear_bull_crawler(date,code)
+    condition=True
+    while condition:
+        try:
+            diff=str(input('輸入恒指區域 (50, 100, 200, 300, 400, 500) : '))
+            code=diff_dict[diff]
+            condition=False
+        except:
+            print('請輸入正常範圍 !!')
 
+    bull_bear_perct,total_bear_df,total_bull_df,total_bear_bull_df=bear_bull_crawler(date,code)
 
-#將指定恒指區域當天牛熊證街貨分佈資料匯出成Excel檔
-total_bear_bull_df.to_excel('{}恒指區域{}牛熊證街貨分佈圖.xlsx'.format(date,diff),index=False)
+    #將指定恒指區域當天牛熊證街貨分佈資料匯出成Excel檔
+    total_bear_bull_df.to_excel('{}恒指區域{}牛熊證街貨分佈圖.xlsx'.format(date,diff),index=False)
 
 
 

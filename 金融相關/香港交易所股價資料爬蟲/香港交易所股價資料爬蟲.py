@@ -50,12 +50,15 @@ def plot_price_volume(stock_code,df):
     plt.show()
 
 
-#抓取指定香港交易所個股當天價量資料
-stock_code='0700.HK'
-df=HKEX_price_crawler(stock_code)
 
-#繪製價量資料圖
-plot_price_volume(stock_code,df)
+#呼叫函數
+if __name__ == '__main__':
+    #抓取指定香港交易所個股當天價量資料
+    stock_code='0700.HK'
+    df=HKEX_price_crawler(stock_code)
+
+    #繪製價量資料圖
+    plot_price_volume(stock_code,df)
 
 
 
