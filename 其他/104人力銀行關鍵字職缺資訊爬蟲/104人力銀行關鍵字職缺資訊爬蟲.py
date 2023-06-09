@@ -69,10 +69,13 @@ def page_function(keyword,page):
     return df
 
 
-#抓取指定總頁數104人力銀行關鍵字職缺資訊
-df=page_function('金融實習',3)
-#將104人力銀行關鍵字職缺資訊匯出成Excel檔
-df.to_excel('104金融實習.xlsx',index=False)
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取指定總頁數104人力銀行關鍵字職缺資訊
+    df=page_function('金融實習',3)
+    #將104人力銀行關鍵字職缺資訊匯出成Excel檔
+    df.to_excel('104金融實習.xlsx',index=False)
 
 
 

@@ -144,10 +144,13 @@ def page_condition_function(page):
     return df
 
 
-#抓取指定總頁數Womentalk板文章資訊
-df=page_condition_function(10)
-#將Womentalk板文章資訊匯出成Excel檔
-df.to_excel('Womentalk板文章資訊.xlsx',index=False)
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取指定總頁數Womentalk板文章資訊
+    df=page_condition_function(10)
+    #將Womentalk板文章資訊匯出成Excel檔
+    df.to_excel('Womentalk板文章資訊.xlsx',index=False)
 
 
 

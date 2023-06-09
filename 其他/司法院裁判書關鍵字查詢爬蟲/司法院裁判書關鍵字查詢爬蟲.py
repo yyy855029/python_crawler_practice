@@ -144,13 +144,16 @@ def law_crawler(name):
     return df,data_list
 
 
-#抓取指定司法院裁判書關鍵字查詢結果
-df,data_list=law_crawler('蔡英文')
-#將指定司法院裁判書關鍵字查詢結果匯出成Excel檔
-df.to_excel('蔡英文.xlsx',index=False)
-#將指定司法院裁判書關鍵字查詢結果匯出成Json檔
-with open('蔡英文.json','w',encoding='utf8') as outfile:
-    json.dump(data_list,outfile,ensure_ascii=False)
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取指定司法院裁判書關鍵字查詢結果
+    df,data_list=law_crawler('蔡英文')
+    #將指定司法院裁判書關鍵字查詢結果匯出成Excel檔
+    df.to_excel('蔡英文.xlsx',index=False)
+    #將指定司法院裁判書關鍵字查詢結果匯出成Json檔
+    with open('蔡英文.json','w',encoding='utf8') as outfile:
+        json.dump(data_list,outfile,ensure_ascii=False)
 
 
 

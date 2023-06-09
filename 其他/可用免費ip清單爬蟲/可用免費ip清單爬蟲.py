@@ -49,14 +49,17 @@ def test_possible_ip(possible_ip_list):
     return ip_dict_list
 
 
-#抓取可能免費IP清單
-possible_ip_list=possible_ip_crawler()
-#檢驗可能免費IP清單
-ip_dict_list=test_possible_ip(possible_ip_list)
-print('可用免費ip比例 : {}/{}={:4.2f}%'.format(len(ip_dict_list),len(possible_ip_list),(len(ip_dict_list)/len(possible_ip_list))*100))
-#儲存可用免費IP清單成Json檔
-with open('./可用免費ip清單.json','w') as f:
-    json.dump(ip_dict_list,f)
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取可能免費IP清單
+    possible_ip_list=possible_ip_crawler()
+    #檢驗可能免費IP清單
+    ip_dict_list=test_possible_ip(possible_ip_list)
+    print('可用免費ip比例 : {}/{}={:4.2f}%'.format(len(ip_dict_list),len(possible_ip_list),(len(ip_dict_list)/len(possible_ip_list))*100))
+    #儲存可用免費IP清單成Json檔
+    with open('./可用免費ip清單.json','w') as f:
+        json.dump(ip_dict_list,f)
 
 
 

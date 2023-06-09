@@ -220,23 +220,26 @@ def download_img_text(id_name,total_img_df):
             urlretrieve(img_links,'{}/{}.png'.format(directory,0))
 
 
-#特定IG公開帳號爬蟲
-id_name=input('請輸入IG帳號 : ')
-try:
-    summary_df,entry_num,user_id=ig_summary_crawler(id_name)
-    print('輸入的IG帳號為：{}，共有{}篇貼文'.format(id_name,entry_num))
-except:
-    print('此帳號輸入錯誤(或設定不公開)')
-try:
-    total_img_df=ig_img_total_crawler(entry_num,user_id,id_name)
-    print('圖片貼文表格下載成功')
-except:
-    print('圖片貼文表格下載失敗')
-try:
-    download_img_text(id_name,total_img_df)
-    print('圖片貼文檔案下載成功')
-except:
-    print('圖片貼文檔案下載失敗')
+
+#呼叫函數
+if __name__ == '__main__':
+    #特定IG公開帳號爬蟲
+    id_name=input('請輸入IG帳號 : ')
+    try:
+        summary_df,entry_num,user_id=ig_summary_crawler(id_name)
+        print('輸入的IG帳號為：{}，共有{}篇貼文'.format(id_name,entry_num))
+    except:
+        print('此帳號輸入錯誤(或設定不公開)')
+    try:
+        total_img_df=ig_img_total_crawler(entry_num,user_id,id_name)
+        print('圖片貼文表格下載成功')
+    except:
+        print('圖片貼文表格下載失敗')
+    try:
+        download_img_text(id_name,total_img_df)
+        print('圖片貼文檔案下載成功')
+    except:
+        print('圖片貼文檔案下載失敗')
 
 
 

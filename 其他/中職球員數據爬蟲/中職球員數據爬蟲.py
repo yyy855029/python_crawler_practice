@@ -34,10 +34,13 @@ def page_function(page):
     return df
 
 
-#抓取指定總頁數中職球員數據
-df=page_function(10)
-#將中職球員數據匯出成Excel檔
-df.to_excel('中職數據排名資料.xlsx',index=False)
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取指定總頁數中職球員數據
+    df=page_function(10)
+    #將中職球員數據匯出成Excel檔
+    df.to_excel('中職數據排名資料.xlsx',index=False)
 
 
 

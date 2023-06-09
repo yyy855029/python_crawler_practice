@@ -61,21 +61,24 @@ def page_function(page):
     return df
 
 
-#抓取指定總頁數永慶房仲網房屋資訊
-df=page_function(5)
-#將永慶房仲網房屋資訊匯出成Excel檔
-df.to_excel('永慶房仲網房屋資訊.xlsx',index=False)
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取指定總頁數永慶房仲網房屋資訊
+    df=page_function(5)
+    #將永慶房仲網房屋資訊匯出成Excel檔
+    df.to_excel('永慶房仲網房屋資訊.xlsx',index=False)
 
 
-#抓取永慶房仲網房屋資訊封面照
-titles=df['標題'].values.tolist()
-imgs=df['照片'].values.tolist()
+    #抓取永慶房仲網房屋資訊封面照
+    titles=df['標題'].values.tolist()
+    imgs=df['照片'].values.tolist()
 
-directory='永慶房仲網房屋照片'
-if not os.path.isdir(directory):
-    os.makedirs(directory)
+    directory='永慶房仲網房屋照片'
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
 
-#執行方便,以前10筆資料為例
-for title,img in zip(titles[:10],imgs[:10]):    
-    print(title)
-    urlretrieve(img,directory+'/{}.jpg'.format(title))
+    #執行方便,以前10筆資料為例
+    for title,img in zip(titles[:10],imgs[:10]):    
+        print(title)
+        urlretrieve(img,directory+'/{}.jpg'.format(title))

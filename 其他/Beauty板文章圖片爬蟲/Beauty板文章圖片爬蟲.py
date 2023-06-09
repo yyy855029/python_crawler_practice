@@ -93,41 +93,41 @@ def page_condition_function(page,condition):
     return df,df_c   
 
 
-#抓取指定總頁數和推數篩選條件下Beauty板文章資訊
-df,df_c=page_condition_function(5,50)
-#將Beauty板文章資訊匯出成Excel檔
-df.to_excel('Beauty板文章資訊.xlsx',index=False)
 
+#呼叫函數
+if __name__ == '__main__':
+    #抓取指定總頁數和推數篩選條件下Beauty板文章資訊
+    df,df_c=page_condition_function(5,50)
+    #將Beauty板文章資訊匯出成Excel檔
+    df.to_excel('Beauty板文章資訊.xlsx',index=False)
 
-#爬取Beauty版文章圖片(在50推數以上)
-titles=df_c['標題'].values.tolist()
-links=df_c['網址'].values.tolist()
+    #爬取Beauty版文章圖片(在50推數以上)
+    titles=df_c['標題'].values.tolist()
+    links=df_c['網址'].values.tolist()
 
+    form_data={'from':'/bbs/Beauty/index.html','yes':'yes'}
+    reg_imgur_file=re.compile('http[s]?://[i.]*imgur.com/\w+\.(?:jpg|png|gif)')
+    session=requests.session()
+    ##餵入form_data
+    response=session.post('https://www.ptt.cc/ask/over18',form_data)
 
-form_data={'from':'/bbs/Beauty/index.html','yes':'yes'}
-reg_imgur_file=re.compile('http[s]?://[i.]*imgur.com/\w+\.(?:jpg|png|gif)')
-session=requests.session()
-##餵入form_data
-response=session.post('https://www.ptt.cc/ask/over18',form_data)
-
-
-#執行方便,以前3篇文章為例
-for link,title in zip(links[:3],titles[:3]):
-    response=session.get(link)
-    images=reg_imgur_file.findall(response.text)
-    print(title)
-    directory='Beauty版文章圖片/{}'.format(title)
-    
-    if not os.path.isdir(directory):
-        os.makedirs(directory)
-    
-    for image in set(images):
-        ID=re.search('http[s]?://[i.]*imgur.com/(\w+\.(?:jpg|png|gif))',image).group(1)
-        print(ID)
-        #連結圖片檔案路徑
-        urlretrieve(image,os.path.join(directory,ID))
-    
-    print('\n')
+    #執行方便,以前3篇文章為例
+    for link,title in zip(links[:3],titles[:3]):
+        response=session.get(link)
+        images=reg_imgur_file.findall(response.text)
+        print(title)
+        directory='Beauty版文章圖片/{}'.format(title)
+        
+        if not os.path.isdir(directory):
+            os.makedirs(directory)
+        
+        for image in set(images):
+            ID=re.search('http[s]?://[i.]*imgur.com/(\w+\.(?:jpg|png|gif))',image).group(1)
+            print(ID)
+            #連結圖片檔案路徑
+            urlretrieve(image,os.path.join(directory,ID))
+        
+        print('\n')
 
 
 

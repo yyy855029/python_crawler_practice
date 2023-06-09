@@ -48,23 +48,26 @@ def books_crawler(url):
     return df
 
 
-#抓取博客來暢銷書排名資訊
-df=books_crawler('https://www.books.com.tw/web/sys_saletopb/books/02?attribute=30&loc=act_menu_th_46_002')
-#將博客來暢銷書排名資訊匯出成Excel檔
-df.to_excel('博客來暢銷書排名資訊.xlsx',index=False)
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取博客來暢銷書排名資訊
+    df=books_crawler('https://www.books.com.tw/web/sys_saletopb/books/02?attribute=30&loc=act_menu_th_46_002')
+    #將博客來暢銷書排名資訊匯出成Excel檔
+    df.to_excel('博客來暢銷書排名資訊.xlsx',index=False)
 
 
-#抓取博客來暢銷書排名封面照
-titles=df['書名'].values.tolist()
-imgs=df['圖片'].values.tolist()
+    #抓取博客來暢銷書排名封面照
+    titles=df['書名'].values.tolist()
+    imgs=df['圖片'].values.tolist()
 
-directory='博客來暢銷書封面'
+    directory='博客來暢銷書封面'
 
-if not os.path.isdir(directory):
-    os.makedirs(directory)
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
 
-#執行方便,以前10名封面照為例
-for title,img in zip(titles[:10],imgs[:10]):
-    urlretrieve(img,directory+'/{}.jpg'.format(title))
-    print(title)
+    #執行方便,以前10名封面照為例
+    for title,img in zip(titles[:10],imgs[:10]):
+        urlretrieve(img,directory+'/{}.jpg'.format(title))
+        print(title)
 
