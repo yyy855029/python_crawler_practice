@@ -138,6 +138,8 @@ def candidate_map(country,name):
     return title
 
 
+
+#呼叫函數
 if __name__ == '__main__':
     #爬取六都市長候選人連結網址
     links,party_df=candidate_list()
@@ -145,7 +147,6 @@ if __name__ == '__main__':
     value_dfs,top5_dfs=value_df(links)
     #數據資料和地圖資料合併結果
     merge_df,top5_merge_df=map_df()
-
 
     #繪製指定直轄市、候選人得票率地圖
     title=candidate_map('高雄市','韓國瑜')
