@@ -83,24 +83,27 @@ def imdb_crawler(url):
     
     return df
 
-#抓取IMDb排名電影資訊
-df=imdb_crawler('https://www.imdb.com/chart/top?ref_=nv_mv_250')
-#將IMDb排名電影資訊匯出成Excel檔
-df.to_excel('IMDb電影排名.xlsx',index=False)
 
 
-#抓取IMDb電影排名照片
-titles=df['片名'].values.tolist()
-imgs=df['照片'].values.tolist()
+#呼叫函數
+if __name__ == '__main__':
+    #抓取IMDb排名電影資訊
+    df=imdb_crawler('https://www.imdb.com/chart/top?ref_=nv_mv_250')
+    #將IMDb排名電影資訊匯出成Excel檔
+    df.to_excel('IMDb電影排名.xlsx',index=False)
 
-directory='IMDb電影劇照'
-if not os.path.isdir(directory):
-    os.makedirs(directory)
+    #抓取IMDb電影排名照片
+    titles=df['片名'].values.tolist()
+    imgs=df['照片'].values.tolist()
 
-#執行方便,以前10名照片為例
-for title,img in zip(titles[:10],imgs[:10]):    
-    print(title)
-    urlretrieve(img,directory+'/{}.jpg'.format(title))
+    directory='IMDb電影劇照'
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
+
+    #執行方便,以前10名照片為例
+    for title,img in zip(titles[:10],imgs[:10]):    
+        print(title)
+        urlretrieve(img,directory+'/{}.jpg'.format(title))
 
 
     

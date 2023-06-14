@@ -106,25 +106,25 @@ def page_function(page):
 
 
 
-#抓取指定總頁數Yahoo電影院線片資訊
-df=page_function(5)
-#將Yahoo電影院線片資訊匯出成Excel檔
-df.to_excel('Yahoo電影院線片資訊.xlsx',index=False)
+#呼叫函數
+if __name__ == '__main__':
+    #抓取指定總頁數Yahoo電影院線片資訊
+    df=page_function(5)
+    #將Yahoo電影院線片資訊匯出成Excel檔
+    df.to_excel('Yahoo電影院線片資訊.xlsx',index=False)
 
+    #抓取Yahoo電影院線片劇照
+    cnames=df['中文電影名'].values.tolist()
+    imgs=df['電影劇照'].values.tolist()
 
+    directory='Yahoo電影院線片劇照'
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
 
-#抓取Yahoo電影院線片劇照
-cnames=df['中文電影名'].values.tolist()
-imgs=df['電影劇照'].values.tolist()
-
-directory='Yahoo電影院線片劇照'
-if not os.path.isdir(directory):
-    os.makedirs(directory)
-
-#執行方便,以前10筆資料為例
-for cname,img in zip(cnames[:10],imgs[:10]):    
-    print(cname)
-    urlretrieve(img,directory+'/{}.jpg'.format(cname))
+    #執行方便,以前10筆資料為例
+    for cname,img in zip(cnames[:10],imgs[:10]):    
+        print(cname)
+        urlretrieve(img,directory+'/{}.jpg'.format(cname))
 
 
 

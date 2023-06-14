@@ -75,10 +75,13 @@ def youtube_trending_crawler():
     return df
 
 
-#抓取YouTube發燒影片資訊
-df=youtube_trending_crawler()
-#將YouTube發燒影片資訊匯出成Excel檔
-df.to_excel('YouTube發燒影片排名.xlsx',index=False)
+
+#呼叫函數
+if __name__ == '__main__':
+    #抓取YouTube發燒影片資訊
+    df=youtube_trending_crawler()
+    #將YouTube發燒影片資訊匯出成Excel檔
+    df.to_excel('YouTube發燒影片排名.xlsx',index=False)
 
 
 
